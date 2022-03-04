@@ -1,32 +1,58 @@
-import { Input } from "@chakra-ui/react"
+import React from "react";
+import {
+  IconButton,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { BiSearch } from "react-icons/bi";
 
-const Search = ({onSearch, value, onFocus, onKeyUp}) => {
-    return (
-        <Input
-        type="text"
-        placeholder="Type search term"
-        onChange={onSearch}
-        onKeyUp={onKeyUp}
-        onFocus={onFocus}
-        textColor="black"
-        value={value}
+
+export default function SearchBar(props) {
+  // Pass the computed styles into the `__css` prop
+  const { variant, children, onSearch, ...rest } = props;
+  // Chakra Color Mode
+  const mainTeal = useColorModeValue("teal.300", "teal.300");
+  const searchIconColor = useColorModeValue("gray.700", "gray.200");
+  const inputBg = useColorModeValue("white", "gray.800");
+  return (
+    <InputGroup
+      bg={inputBg}
+      borderRadius="15px"
+      w="200px"
+      _focus={{
+        borderColor: { mainTeal },
+      }}
+      _active={{
+        borderColor: { mainTeal },
+      }}
+    >
+      <InputLeftElement
+        children={
+          <IconButton
+            bg="inherit"
+            borderRadius="inherit"
+            _hover="none"
+            _active={{
+              bg: "inherit",
+              transform: "none",
+              borderColor: "transparent",
+            }}
+            _focus={{
+              boxShadow: "none",
+            }}
+            icon={<BiSearch color={searchIconColor} w="15px" h="15px" />}
+          ></IconButton>
+        }
       />
-    )
-};
-
-
-export default Search
-
-Search.propTypes = {
-    value: propTypes.string,
-    onChange: propTypes.func,
-    onFocus: propTypes.func,
-    onKeyUp: propTypes.func,
-  };
-  
- Search.defaultProps = {
-    value: null,
-    onChange: null,
-    onFocus: null,
-    onKeyUp: null,
-  };
+      <Input
+        fontSize="xs"
+        py="11px"
+        placeholder="Type search term"
+        borderRadius="inherit"
+        onChange={onSearch}
+      />
+    </InputGroup>
+  );
+}

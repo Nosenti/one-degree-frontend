@@ -6,6 +6,7 @@ import {
     HStack,
     Icon,
     Input,
+    Switch,
     Text,
     useColorModeValue,
   } from "@chakra-ui/react";
@@ -13,7 +14,7 @@ import {
   import { Link } from "react-router-dom";
   import { FaGoogle } from "react-icons/fa";
 
-const Login = () => {
+const Signup = () => {
 
     const titleColor = useColorModeValue("teal.300", "teal.200");
     const textColor = useColorModeValue("gray.700", "white");
@@ -26,7 +27,7 @@ const Login = () => {
         justifySelf="center"
         overflow="hidden"
         >
-        <Flex alignItems="center" justifyContent="center" mb="60px" mt="30px">
+        <Flex alignItems="center" justifyContent="center" mb="60px" mt="25px">
             <Flex
             direction="column"
             w="445px"
@@ -44,7 +45,7 @@ const Login = () => {
                 textAlign="center"
                 mb="22px"
             >
-                Sign In With
+                Register With
             </Text>
             <HStack spacing="15px" justify="center" mb="22px">
                 <Flex
@@ -79,6 +80,18 @@ const Login = () => {
             </Text>
             <FormControl>
                 <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
+                Name
+                </FormLabel>
+                <Input
+                fontSize="sm"
+                ms="4px"
+                borderRadius="15px"
+                type="text"
+                placeholder="Your full name"
+                mb="24px"
+                size="lg"
+                />
+                <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
                 Email
                 </FormLabel>
                 <Input
@@ -102,6 +115,12 @@ const Login = () => {
                 mb="24px"
                 size="lg"
                 />
+                <FormControl display="flex" alignItems="center" mb="24px">
+                <Switch id="rememSignup" colorScheme="teal" me="10px" />
+                <FormLabel htmlFor="remember-login" mb="0" fontWeight="normal">
+                    Remember me
+                </FormLabel>
+                </FormControl>
                 <Button
                 type="submit"
                 bg="teal.300"
@@ -118,7 +137,7 @@ const Login = () => {
                     bg: "teal.400",
                 }}
                 >
-                SIGN IN
+                SIGN UP
                 </Button>
             </FormControl>
             <Flex
@@ -129,15 +148,15 @@ const Login = () => {
                 mt="0px"
             >
                 <Text color={textColor} fontWeight="medium">
-                Don't have an account?
+                Already have an account?
                 <Link
                     color={titleColor}
                     as="span"
                     ms="5px"
-                    to="/register"
+                    to="/"
                     fontWeight="bold"
                 >
-                    Sign Up
+                    Sign In
                 </Link>
                 </Text>
             </Flex>
@@ -147,5 +166,5 @@ const Login = () => {
     );
 };
 
-export default Login
+export default Signup
   
