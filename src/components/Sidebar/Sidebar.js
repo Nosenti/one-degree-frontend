@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   IconButton,
   Avatar,
@@ -21,23 +21,25 @@ import {
   MenuList,
 } from '@chakra-ui/react';
 import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
   FiMenu,
   FiBell,
   FiChevronDown,
 } from 'react-icons/fi';
+import {RiCompassDiscoverLine} from "react-icons/ri"
+import {AiFillWechat, AiFillSetting} from "react-icons/ai"
+import {BiUserCircle} from "react-icons/bi"
+import { Separator } from '../Separator';
+import axios from 'axios';
 
+const url = "http://localhost:5000/api"
 
+const defaultLinks = [
+  { name: 'Discover', icon: RiCompassDiscoverLine },
+  { name: 'Chat', icon: AiFillWechat }
+];
 const LinkItems = [
-  { name: 'Home', icon: FiHome },
-  { name: 'Trending', icon: FiTrendingUp },
-  { name: 'Explore', icon: FiCompass },
-  { name: 'Favourites', icon: FiStar },
-  { name: 'Settings', icon: FiSettings },
+  { name: 'simon', icon: BiUserCircle },
+  { name: 'Innocent', icon: BiUserCircle }
 ];
 
 export default function SidebarWithHeader({children}) {
@@ -71,6 +73,15 @@ export default function SidebarWithHeader({children}) {
 
 
 const SidebarContent = ({ onClose, ...rest}) => {
+  const token = localStorage.getItem("token")
+  useEffect(async() => {
+    const result =  await axios.get(`${url}/users/auth`, {
+      headers: {
+        "token": JSON.parse(token)
+      }
+    })
+    console.log("users", result.data)
+  },[])
   return (
     <Box
       transition="3s ease"
@@ -92,11 +103,23 @@ const SidebarContent = ({ onClose, ...rest}) => {
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+      {defaultLinks.map((link) => (
+        <NavItem key={link.name} icon={link.icon}  fontSize="25px">
           {link.name}
         </NavItem>
       ))}
+      <NavItem>
+      </NavItem>
+      <Separator />
+      {LinkItems.map((link) => (
+        <NavItem key={link.name} icon={link.icon} fontFamily="monospace" >
+          {link.name}
+        </NavItem>
+      ))}
+      <Separator />
+      <NavItem  icon={AiFillSetting}  fontSize="25px" mt="20px">
+          Settings
+      </NavItem>
     </Box>
   );
 };
