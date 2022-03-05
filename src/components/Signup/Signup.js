@@ -23,6 +23,7 @@ const Signup = ({onChange, onSubmit, isSubmitting}) => {
         alignSelf="center"
         justifySelf="center"
         overflow="hidden"
+        mt="15px"
         >
         <Flex alignItems="center" justifyContent="center" mb="60px" mt="25px">
             <Flex
