@@ -1,4 +1,4 @@
-import { SidebarWithHeader } from "../Sidebar";
+import { Sidebar } from "../Sidebar";
 
 export default function Layout({ title, description, keywords, children }) {
   return (
@@ -12,8 +12,9 @@ export default function Layout({ title, description, keywords, children }) {
       <body>
         <main>
           <div className="main-layout">
-            <SidebarWithHeader />
+            <Sidebar>
             <div className="main-content">{children}</div>
+            </Sidebar>
           </div>
         </main>
       </body>

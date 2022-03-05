@@ -46,6 +46,8 @@ const CustomInput = ({
             onFocus={onFocus}
             textColor="black"
             value={value}
+            bg="white"
+            mb="24px"
           />
         ) : (
           <InputGroup>
@@ -63,13 +65,13 @@ const CustomInput = ({
                 variant={"ghost"}
                 padding={0}
                 onClick={() => setShowPassword((showPassword) => !showPassword)}
-                bgColor="#11253e"
+                bgColor="gray.200"
                 _hover={{ bgColor: "gray.600" }}
               >
                 {showPassword ? (
-                  <AiFillEye size={25} />
+                  <AiFillEye size={20} />
                 ) : (
-                  <AiFillEyeInvisible size={25} />
+                  <AiFillEyeInvisible size={20} />
                 )}
               </Button>
             </InputRightElement>
@@ -104,7 +106,7 @@ CustomInput.defaultProps = {
   isPassword: false,
   isRequired: false,
   name: "name",
-  value: null,
+  value:null,
   error: null,
   onChange: null,
   onFocus: null,
