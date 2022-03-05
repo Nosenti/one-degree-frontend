@@ -3,23 +3,20 @@ import {
     Flex,
     FormControl,
     FormLabel,
-    HStack,
-    Icon,
-    Input,
     Switch,
     Text,
     useColorModeValue,
   } from "@chakra-ui/react";
   import React from "react";
   import { Link } from "react-router-dom";
-  import { FaGoogle } from "react-icons/fa";
+import { CInput } from "../Input";
+import PropTypes from "prop-types";
 
-const Signup = () => {
+const Signup = ({onChange, onSubmit, isSubmitting}) => {
 
     const titleColor = useColorModeValue("teal.300", "teal.200");
     const textColor = useColorModeValue("gray.700", "white");
     const bgColor = useColorModeValue("white", "gray.700");
-    const bgIcons = useColorModeValue("teal.200", "rgba(255, 255, 255, 0.5)");
     return (
         <Flex
         direction="column"
@@ -38,84 +35,35 @@ const Signup = () => {
             bg={bgColor}
             boxShadow="0 20px 27px 0 rgb(0 0 0 / 5%)"
             >
-            <Text
-                fontSize="xl"
-                color={textColor}
-                fontWeight="bold"
-                textAlign="center"
-                mb="22px"
-            >
-                Register With
-            </Text>
-            <HStack spacing="15px" justify="center" mb="22px">
-                <Flex
-                justify="center"
-                align="center"
-                w="75px"
-                h="75px"
-                borderRadius="15px"
-                border="1px solid lightgray"
-                cursor="pointer"
-                transition="all .25s ease"
-                _hover={{ filter: "brightness(120%)", bg: bgIcons }}
-                >
-                <Link to="#">
-                    <Icon
-                    as={FaGoogle}
-                    w="30px"
-                    h="30px"
-                    _hover={{ filter: "brightness(120%)" }}
-                    />
-                </Link>
-                </Flex>
-            </HStack>
-            <Text
-                fontSize="lg"
-                color="gray.400"
-                fontWeight="bold"
-                textAlign="center"
-                mb="22px"
-            >
-                or
-            </Text>
             <FormControl>
-                <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
-                Name
-                </FormLabel>
-                <Input
-                fontSize="sm"
-                ms="4px"
-                borderRadius="15px"
+                <CInput 
+                label="Name"
                 type="text"
-                placeholder="Your full name"
-                mb="24px"
-                size="lg"
+                placeholder="Your names"
+                onChange={onChange}
+                name="name"
+                labelColor="black"
+                isRequired
                 />
-                <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
-                Email
-                </FormLabel>
-                <Input
-                fontSize="sm"
-                ms="4px"
-                borderRadius="15px"
+                <CInput 
+                label="Email"
                 type="email"
                 placeholder="Your email address"
-                mb="24px"
-                size="lg"
+                onChange={onChange}
+                name="email"
+                labelColor="black"
+                isRequired
                 />
-                <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
-                Password
-                </FormLabel>
-                <Input
-                fontSize="sm"
-                ms="4px"
-                borderRadius="15px"
-                type="password"
-                placeholder="Your password"
-                mb="24px"
-                size="lg"
+                <CInput 
+                    label="Password"
+                    type="password"
+                    name="password"
+                    placeholder="Your password"
+                    onChange={onChange}
+                    isPassword
+                    isRequired
                 />
-                <FormControl display="flex" alignItems="center" mb="24px">
+                <FormControl display="flex" alignItems="center" mb="24px" mt="24px">
                 <Switch id="rememSignup" colorScheme="teal" me="10px" />
                 <FormLabel htmlFor="remember-login" mb="0" fontWeight="normal">
                     Remember me
@@ -124,7 +72,7 @@ const Signup = () => {
                 <Button
                 type="submit"
                 bg="teal.300"
-                fontSize="10px"
+                fontSize="20px"
                 color="white"
                 fontWeight="bold"
                 w="100%"
@@ -136,8 +84,9 @@ const Signup = () => {
                 _active={{
                     bg: "teal.400",
                 }}
+                onClick={onSubmit}
                 >
-                SIGN UP
+                { isSubmitting ? "PLease wait..." : "SIGN UP"}
                 </Button>
             </FormControl>
             <Flex
@@ -150,13 +99,16 @@ const Signup = () => {
                 <Text color={textColor} fontWeight="medium">
                 Already have an account?
                 <Link
+                    to="/"   
+                >
+                    <Text
                     color={titleColor}
                     as="span"
                     ms="5px"
-                    to="/"
                     fontWeight="bold"
-                >
-                    Sign In
+                    >
+                        Sign In
+                    </Text>
                 </Link>
                 </Text>
             </Flex>
@@ -167,4 +119,9 @@ const Signup = () => {
 };
 
 export default Signup
-  
+
+Signup.propTypes = {
+    onchange: PropTypes.func,
+    onSubmit: PropTypes.func,
+    isSubmitting: PropTypes.bool
+}

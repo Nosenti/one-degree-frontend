@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from "react";
 import {
   IconButton,
@@ -10,9 +11,9 @@ import { BiSearch } from "react-icons/bi";
 
 
 export default function SearchBar(props) {
-  // Pass the computed styles into the `__css` prop
   const { variant, children, onSearch, ...rest } = props;
-  // Chakra Color Mode
+
+
   const mainTeal = useColorModeValue("teal.300", "teal.300");
   const searchIconColor = useColorModeValue("gray.700", "gray.200");
   const inputBg = useColorModeValue("white", "gray.800");

@@ -1,3 +1,3 @@
-import SidebarWithHeader from "./Sidebar";
+import Sidebar from "./Sidebar";
 
-export {SidebarWithHeader}
+export {Sidebar}
