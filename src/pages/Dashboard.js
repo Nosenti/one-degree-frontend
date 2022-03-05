@@ -1,13 +1,12 @@
-import { Text } from "@chakra-ui/react";
 import { Content } from "../components/Dashboard";
 import { Layout } from "../components/Layout"
-import { Search } from "../components/Search";
+// import { Search } from "../components/Search";
 
 const DashBoard = () => {
     return (
         <Layout>
             <div>
-                <Search />
+                {/* <Search /> */}
                 <Content />
             </div>
         </Layout>

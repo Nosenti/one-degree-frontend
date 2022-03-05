@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-duplicate-props */
 import {
     Button,
     Flex,
@@ -20,7 +19,8 @@ const Login = ({onChange, onSubmit, isSubmitting}) => {
         direction="column"
         alignSelf="center"
         justifySelf="center"
-        overflow="hidden"
+        alignItems="center"
+        mt="30"
         >
         <Flex alignItems="center" justifyContent="center" mb="60px" mt="30px">
             <Flex
@@ -87,7 +87,6 @@ const Login = ({onChange, onSubmit, isSubmitting}) => {
                 >
                     <Text 
                     color={titleColor}
-                    fontWeight="bold"
                     fontWeight="bold"
                     as="span"
                     ms="5px"

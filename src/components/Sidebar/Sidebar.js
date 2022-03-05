@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import {
   IconButton,
@@ -74,13 +75,16 @@ export default function SidebarWithHeader({children}) {
 
 const SidebarContent = ({ onClose, ...rest}) => {
   const token = localStorage.getItem("token")
-  useEffect(async() => {
+  const getUsers = async() => {
     const result =  await axios.get(`${url}/users/auth`, {
       headers: {
         "token": JSON.parse(token)
       }
     })
     console.log("users", result.data)
+  }
+  useEffect(() => {
+    getUsers()
   },[])
   return (
     <Box
