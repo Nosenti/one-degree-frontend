@@ -12,6 +12,7 @@ If you suggest people connect and they do; you will gain matching points. You wi
 
 # Frontend
 One-Degree frontend is built using Reactjs
+**Note:** I was able to complete authentication on frontend only (so far). The rest of the features can be tested by calling APIs using Postman
 
 # Getting Started
 
